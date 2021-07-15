@@ -2,6 +2,7 @@ import {Component} from 'react'
 import{Card, ListGroup, Row} from 'react-bootstrap'
 import CommentForm from './CommentForm'
 import Comments from './comments'
+import deleteComment from './DeleteComment'
 
 
 
@@ -29,6 +30,7 @@ class SingleBook extends Component{
                 <Card className='grid-child my-3' style={{width:'250px',height:'auto'}}>
                 {this.state.selected && <Comments asin={this.props.item.asin}/>}
                 {this.state.selected && <CommentForm Asin={this.props.item.asin}/>}
+                {this.state.selected && <deleteComment delete={this.props.item.asin}/>}
             
                 </Card>
                 </Row>
