@@ -9,12 +9,12 @@ class Comments extends Component{
         collection:[],
         isError:false
     }
-  componentDidUpdate = async(PrevProps,prevState,snapshot)=>{
+  componentDidUpdate = async(PrevProps)=>{
       console.log('component did update',PrevProps.book, this.props)
-    if(this.props.book && (!PrevProps.book || PrevProps.book.asin !== this.props.book.asin)){
+    if(this.props.asin && (!PrevProps.asin || PrevProps.asin._id !== this.props.asin._id)){
         try {
             let response = await fetch('https://striveschool-api.herokuapp.com/api/comments/' + this.props.asin,{
-                headers:{"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGU2ZTg4NzE1ODFjMzAwMTUzNmI1MDciLCJpYXQiOjE2MjU3NDU1NDMsImV4cCI6MTYyNjk1NTE0M30.lLm8P6JbqRK-l2zbSN_SYDhgHrTeYpRz02skYuZHTZ4"}
+                headers:{"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGZjMTYzODNhODhhNDAwMTViNmY0ZTUiLCJpYXQiOjE2MjcxMzM0OTYsImV4cCI6MTYyODM0MzA5Nn0.GC_DZqQrwV0rsDIyScw1PPqVHFHSw44lGlDV4VA4QT4"}
             })
             if(response.ok){
                 let data =await response.json()
@@ -32,7 +32,7 @@ class Comments extends Component{
   componentDidMount = async()=>{
          try {
              let response = await fetch('https://striveschool-api.herokuapp.com/api/comments/' + this.props.asin,{
-                 headers:{"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGU2ZTg4NzE1ODFjMzAwMTUzNmI1MDciLCJpYXQiOjE2MjU3NDU1NDMsImV4cCI6MTYyNjk1NTE0M30.lLm8P6JbqRK-l2zbSN_SYDhgHrTeYpRz02skYuZHTZ4"}
+                 headers:{"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGZjMTYzODNhODhhNDAwMTViNmY0ZTUiLCJpYXQiOjE2MjcxMzM0OTYsImV4cCI6MTYyODM0MzA5Nn0.GC_DZqQrwV0rsDIyScw1PPqVHFHSw44lGlDV4VA4QT4"}
              })
              if(response.ok){
                  let data =await response.json()

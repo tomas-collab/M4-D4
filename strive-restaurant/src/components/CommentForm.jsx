@@ -1,5 +1,6 @@
 import { Component } from "react";
 import{Container,Row,Col,Form,Button} from 'react-bootstrap'
+import WarningSign from "./WarningSign";
  
 
 class CommentForm extends Component{
@@ -27,19 +28,19 @@ class CommentForm extends Component{
                   body:JSON.stringify(this.state.collection),
                   headers:{
                       "Content-Type":'application/json',
-                      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGU2ZTg4NzE1ODFjMzAwMTUzNmI1MDciLCJpYXQiOjE2MjU3NDU1NDMsImV4cCI6MTYyNjk1NTE0M30.lLm8P6JbqRK-l2zbSN_SYDhgHrTeYpRz02skYuZHTZ4"}
+                      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGZjMTYzODNhODhhNDAwMTViNmY0ZTUiLCJpYXQiOjE2MjcxMzM0OTYsImV4cCI6MTYyODM0MzA5Nn0.GC_DZqQrwV0rsDIyScw1PPqVHFHSw44lGlDV4VA4QT4"}
               })
               if(response.ok){
                   alert('comment added')
-                //   this.setState({
-                //       collection:{
-                //           comment:'',
-                //           rate:1,
-                //           elementId:''
-                //       }
-                //   })
+                  this.setState({
+                      collection:{
+                          comment:'',
+                          rate:1,
+                          elementId:''
+                      }
+                  })
               } else{
-                  alert('error error')
+                 console.log('error')
               }   
           } catch (error) {
               console.log(error)
@@ -56,7 +57,6 @@ class CommentForm extends Component{
                     <p>comment and rate Book</p>
                     <Form onSubmit={this.submitComment}>
                         <Form.Group>
-
                             <Form.Label>comment Section</Form.Label>
                             <Form.Control 
                              as="textarea" rows={4}
@@ -67,18 +67,18 @@ class CommentForm extends Component{
                               onChange={(e)=>{this.handleInput('comment',e.currentTarget.value)}}
                               />
                        </Form.Group>               
-             <Form.Control as="select" size="sm" custom  
-                     
-                            value={this.state.collection.rate}
-                            onChange={(e)=>{this.handleInput('rate',e.target.value)}}>
-                         <option>1</option>
-                         <option>2</option>
-                         <option>3</option>
-                         <option>4</option>
-                         <option>5</option>
-                      </Form.Control>
-               
+                            <Form.Control as="select" size="sm" custom  
+                                    
+                                            value={this.state.collection.rate}
+                                            onChange={(e)=>{this.handleInput('rate',e.target.value)}}>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                            </Form.Control>               
                          <Button variant="success" type="submit"> save </Button>
+                        
                       </Form>
                  </Col>
             </Row>

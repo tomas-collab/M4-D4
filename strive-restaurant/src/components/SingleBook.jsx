@@ -2,7 +2,7 @@ import {Component} from 'react'
 import{Card, ListGroup, Row} from 'react-bootstrap'
 import CommentForm from './CommentForm'
 import Comments from './comments'
-import deleteComment from './DeleteComment'
+
 
 
 

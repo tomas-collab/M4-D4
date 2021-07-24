@@ -8,10 +8,8 @@ import Comments from './components/comments';
 function App() {
   return (
     <div className="App">
-   <Comments/>
-    <WarningSign name='alert' />
+    
     <MyBadge name='This is my Badge' color='success'/>
-   
     <BookList/>
     </div>
   );
