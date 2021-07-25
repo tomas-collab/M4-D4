@@ -1,10 +1,12 @@
 import { Component } from "react";
 import{Container,Row,Col,Form,Button} from 'react-bootstrap'
+import Loading from "./Loading";
 import WarningSign from "./WarningSign";
  
 
 class CommentForm extends Component{
     state = {
+        Loading:false,
         collection:{
             comment:'',
             rate:1,
@@ -25,24 +27,20 @@ class CommentForm extends Component{
           try {
               let response = await fetch('https://striveschool-api.herokuapp.com/api/comments/',{
                   method:'POST',
-                  body:JSON.stringify(this.state.collection),
+                  body:JSON.tringify(this.state.collection),
                   headers:{
                       "Content-Type":'application/json',
                       "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGZjMTYzODNhODhhNDAwMTViNmY0ZTUiLCJpYXQiOjE2MjcxMzM0OTYsImV4cCI6MTYyODM0MzA5Nn0.GC_DZqQrwV0rsDIyScw1PPqVHFHSw44lGlDV4VA4QT4"}
               })
               if(response.ok){
                   alert('comment added')
-                  this.setState({
-                      collection:{
-                          comment:'',
-                          rate:1,
-                          elementId:''
-                      }
-                  })
+                 this.props.onAddComment(await response.json())
               } else{
+                this.setState({Loading:!this.state.Loading})
                  console.log('error')
               }   
           } catch (error) {
+             this.setState({Loading:!this.state.Loading})
               console.log(error)
           }
     }
@@ -77,7 +75,7 @@ class CommentForm extends Component{
                                         <option>4</option>
                                         <option>5</option>
                             </Form.Control>               
-                         <Button variant="success" type="submit"> save </Button>
+                                    <Button variant="success" type="submit">{this.state.Loading&&<Loading/> }save </Button>
                         
                       </Form>
                  </Col>
