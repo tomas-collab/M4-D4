@@ -3,12 +3,12 @@ import { ListGroup } from "react-bootstrap";
 
 class Comments extends Component{
 DeleteComment=async()=>{
-     const response = await fetch('https://striveschool-api.herokuapp.com/api/comments/'+this.props.id,{
+     const response = await fetch(`${process.env.REACT_APP_PORT}/comments/`+this.props.comment.elementId,{
          method:'DELETE',
-         headers:{"Authorization":  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGZjMTYzODNhODhhNDAwMTViNmY0ZTUiLCJpYXQiOjE2MjcxMzM0OTYsImV4cCI6MTYyODM0MzA5Nn0.GC_DZqQrwV0rsDIyScw1PPqVHFHSw44lGlDV4VA4QT4"}
+         
      })
      if(response.ok){
-        this.props.onCommentDelete(this.props.id)
+        this.props.onCommentDelete(this.props.comment.elementId)
      }
 }
 

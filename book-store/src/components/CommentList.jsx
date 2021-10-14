@@ -5,11 +5,11 @@ class CommentList extends Component{
     render(){ 
         return(
            <>
-                 {
-                     this.props.comment && this.props.comment.map(comm=><Comments onCommentDelete={this.props.onCommentDelete} id={comm._id} comment={comm}/>
+                 
+                 <Comments comment={this.props.comment}  onCommentDelete={this.props.onCommentDelete} />
                       
                 )
-            }
+            
            </>
             )
     }
